@@ -1,0 +1,1 @@
+Channels.permit(['insert', 'update', 'remove']).ifLoggedIn().apply();

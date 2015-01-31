@@ -1,0 +1,32 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+useraccounts:bootstrap
+twbs:bootstrap
+natestrauser:font-awesome
+meteorhacks:kadira
+aldeed:simple-schema
+aldeed:collection2
+aldeed:autoform
+alanning:roles
+accounts-password
+lepozepo:streams
+meteorhacks:fast-render
+meteorhacks:subs-manager
+ongoworks:security
+jrudio:videojs
+jrudio:youtubejs
+meteorhacks:unblock
+raix:handlebar-helpers
+multiply:iron-router-progress
+cfs:power-queue
+mizzao:bootboxjs
+zimme:iron-router-active
+renaldo:youtube-api
+alethes:pages
+rzymek:moment
+rzymek:moment-locale-vi

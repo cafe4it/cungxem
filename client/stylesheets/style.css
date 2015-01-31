@@ -1,0 +1,346 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.masthead {
+    margin-top: -20px;
+    padding: 50px;
+}
+
+.masthead h1 {
+    font-size: 52px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 0;
+    text-shadow: 0 1px 3px #666;
+}
+
+.masthead p {
+    font-size: 20px;
+}
+.masthead .btn-create-room {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 45px;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.container-non-responsive {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+/*#positionSlider{
+    border-color: #e7e7e7;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
+    margin-top: 4px;
+}
+
+.slider{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.slider .track{
+    background-color: #fff;
+    border-radius: 4px;
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.slider .statusTrack{
+    background-color: #f2f2f2;
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+
+.slider .leftTrack{
+    background-color: #ebebeb;
+    border-radius: 4px;
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+
+.slider .bubble{
+    background-color: #428bca;
+    border-radius: 4px;
+    height: 15px;
+    left: 0;
+    position: relative;
+    top: 0;
+    width: 15px;
+}
+.navbar-volume-slider {
+    margin-bottom: 16.5px;
+    margin-left: 35px;
+    margin-top: 16.5px;
+    width: 100px;
+}*/
+
+#chat-input{
+    padding-top: 10px;
+}
+
+.panel-chat .chat-log{
+    height: 422px;
+    overflow-y: scroll;
+}
+
+.panel-footer{
+    padding: 5px;
+}
+
+.panel-chat .chat-log .systemEntry {
+    font-style: italic;
+}
+.panel-chat .chat-log .entry {
+    line-height: 1.25;
+    margin-top: 5px;
+}
+/*
+#player {
+    width : 580px;
+    height:407px;
+    float : left;
+    margin: 5px 5px 14px 0;
+}
+
+#no-video {
+    width : 580px;
+    height: 407px;
+}
+
+#users-connected {
+    width: 99%;
+    height: 407px;
+    float: left;
+    display: block;
+    overflow: scroll;
+    background-color: #f0f0f0;
+    margin-top: 5px;
+}
+
+#chat{
+    width : 99%;
+    height : 407px;
+    float: left;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+#chat-messages {
+    height : 341px;
+    background-color: #f0f0f0;
+    overflow-y: scroll;
+    margin-top: 5px;
+}
+
+#chat-input{
+    padding: 8px 8px;
+}
+*/
+.vjs-default-skin.vjs-paused .vjs-big-play-button
+{
+    display: none;
+}
+
+.vjs-default-skin.vjs-paused .vjs-control-bar
+{
+    display: block;
+}
+
+.playlist-tabset .tab-content {
+    height: 590px;
+}
+.tab-content {
+    padding-top: 5px;
+}
+
+.emptyListInfo{
+    padding: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+.emptyListInfo i.fa {
+    font-size: 5em;
+}
+
+.emptyListInfo h4{
+    font-size: 2.5em;
+}
+
+a.disabled-link,
+a.disabled-link:visited ,
+a.disabled-link:active,
+a.disabled-link:hover {
+    background-color:#d9d9d9 !important;
+    color:#aaa !important;
+}
+
+.player-overlay {
+    background-color: #e7e7e7;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    padding: 30px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+
+.player-overlay .fa{
+    color: #428bca;
+    font-size: 10em;
+}
+
+.player-overlay .player-overlay-textbox {
+    background-color: #dadada;
+    border-radius: 4px;
+    margin: 0 100px;
+    padding: 15px;
+}
+
+.fa-5{
+    font-size: 12em !important;
+}
+
+.fa-4{
+    font-size: 7em !important;
+}
+
+.fa-3{
+    font-size: 4em !important;
+}
+
+ol.videoList {
+    list-style: outside none none;
+    margin: 0;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+ol.videoList > li.videoListEntry {
+    width: 100%;
+}
+
+ol.videoList > li.videoListEntry .header {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #f5f5f5;
+    border-color: #ccc;
+    border-image: none;
+    border-radius: 4px 4px 0 0;
+    border-style: solid;
+    border-width: 1px 1px 0;
+    padding: 4px 5px;
+    position: relative;
+}
+
+ol.videoList > li.videoListEntry .header:before, ol.videoList > li.videoListEntry .header:after {
+    content: " ";
+    display: table;
+}
+ol.videoList > li.videoListEntry .header h5 {
+    margin: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90%;
+}
+ol.videoList > li.videoListEntry .content {
+    border: 1px solid #ccc;
+    border-radius: 0 0 4px 4px;
+    display: table;
+    margin-bottom: 5px;
+    padding: 5px;
+    table-layout: fixed;
+    width: 100%;
+}
+
+
+
+.thumbnailContainer {
+    display: block;
+    height: 112px;
+    width: 200px;
+}
+
+.thumbnailContainer .thumbnailClip {
+    display: inline-block;
+    height: 112px;
+    overflow: hidden;
+    position: relative;
+    width: 200px;
+}
+
+.thumbnailContainer.aspectFourByThreeLetterboxed .thumbnailClip img {
+    top: -19px;
+    width: 100%;
+}
+.thumbnailContainer .thumbnailClip img {
+    display: block;
+    left: 0;
+    position: absolute;
+}
+
+.thumbnailContainer .thumbnailClip .thumbnail-info {
+    background-color: #000;
+    bottom: 2px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    opacity: 0.75;
+    padding-left: 4px;
+    padding-right: 4px;
+    position: absolute;
+    right: 2px;
+}
+
+ol.videoList > li.videoListEntry .content > .list-container:nth-child(1) {
+    width: 200px;
+}
+ol.videoList > li.videoListEntry .content > .list-container:nth-child(2) {
+    padding: 0 5px;
+}
+
+ol.videoList > li.videoListEntry .content > .list-container:nth-child(2) p {
+    height: 100px;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+ol.videoList > li.videoListEntry .content > .list-container:nth-child(2) {
+    width: auto;
+}
+
+ol.videoList > li.videoListEntry .content > .list-container {
+    display: table-cell;
+    height: 100%;
+    vertical-align: top;
+}

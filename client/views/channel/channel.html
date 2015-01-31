@@ -1,0 +1,266 @@
+<template name='addChannel'>
+    <div class="row">
+        <div class="col-md-6">
+            {{#autoForm collection="Channels" id="insertChannelForm" type="insert"}}
+                <fieldset>
+                    <legend>Tạo kênh mới</legend>
+                    {{> afQuickField name='title'}}
+                    {{> afQuickField name='description' rows=6}}
+                    {{> afQuickField name='password'}}
+                    {{> afQuickField name='displayPublic'}}
+                    {{> afQuickField name='hideChat'}}
+                    {{> afFieldInput name='createdBy' type="hidden"}}
+                    {{> afFieldInput name='modBy' type="hidden"}}
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Lưu lại</button>
+                &nbsp;
+                <button type="reset" class="btn btn-default">Làm lại</button>
+            {{/autoForm}}
+        </div>
+    </div>
+</template>
+
+<template name="detailChannel">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                {{channel.title}}
+            </h1>
+            <span>{{channel.description}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+            <div id="player">
+                <div class="embed-responsive embed-responsive-16by9">
+                    {{> Template.dynamic template=channel.playerTemplate.template data=channel.playerTemplate.data}}
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div id="chat-input">
+                <div class="input-group">
+                    <input id="txtMessage" type="text" class="form-control" placeholder="Chia sẻ cảm nghĩ... và nhấn ENTER">
+                          <span class="input-group-btn">
+                            <button id="btnEmoji" class="btn btn-default" type="button"><i class="fa fa-smile-o"></i></button>
+                          </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 visible-lg-block">
+            <div class="panel-chat panel panel-default">
+                <div class="panel-body chat-log">
+                    {{#each chatLog}}
+                        <div class="entry systemEntry">
+                            <span>{{{message}}}</span>
+                        </div>
+                    {{/each}}
+
+                </div>
+                <div class="panel-footer">
+                    <form class="form-inline">
+                        <button id="shareLink" class="btn btn-default">
+                            <i class="fa fa-users"></i>
+                            Mời bạn
+                        </button>
+                        <button id="shareFacebook" class="btn btn-default">
+                            Chia sẻ
+                            <i class="fa fa-facebook"></i>
+                        </button>
+                        <div class="checkbox">
+                            <label>
+                                <input id="displaySystemLog" type="checkbox" checked> Hiển thị LOG?
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 playlist-tabset">
+            <div role="tabpanel">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active" role="tab">
+                        <a href="#playlist" data-toggle="tab">
+                            <i class="fa fa-list"></i>
+                            Danh sách chờ <span class="badge">0</span>
+                        </a>
+                    </li>
+                    {{#if channel.isMod}}
+                        <li role="tab">
+                            <a href="#searchVideos" data-toggle="tab">
+                                <i class="fa fa-search"></i>
+                                Thêm hoặc tìm kiếm
+                            </a>
+                        </li>
+                    {{/if}}
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="playlist">
+                        {{> Template.dynamic template=channel.playlistTemplate.template data=channel.playlistTemplate.data}}
+                    </div>
+                    {{#if channel.isMod}}
+                        <div role="tabpanel" class="tab-pane" id="searchVideos">{{> playlist_search}}</div>
+                    {{/if}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</template>
+
+<template name="empty-player">
+    <div class="player-overlay">
+        <i class="fa fa-video-camera"></i>
+
+        <div class="player-overlay-textbox">
+            <h3>Hiện tại không có video nào đang chạy.</h3>
+            {{#if isMod }}
+            <p>Hãy chọn video từ <em style="color:#4996CA">Danh sách chờ </em>hoặc Tìm kiếm video mới</p>
+            {{else}}
+                <p>Hãy chờ người quản trị kênh...</p>
+                <p style="color: green">Hoặc bạn có thể tự tạo kênh cho riêng mình và bắt đầu chia sẻ</p>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="youtube-player">
+    <video id="videoPlayer_{{channel._id}}" class="video-js vjs-default-skin"
+           controls preload="auto" width="750" height="422">
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a
+            web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports
+                HTML5 video</a></p>
+    </video>
+</template>
+
+<template name="empty-playlist">
+    <div class="emptyListInfo">
+        <i class="fa fa-list-ul"></i>
+        <h4>Danh sách chờ rỗng :)</h4>
+        {{#if isMod}}
+            <p>Sử dụng tab <em style="color:#4996CA">Thêm hoặc tìm kiếm</em> để thêm videos bạn thích.</p>
+        {{/if}}
+    </div>
+</template>
+
+<template name="channel-playlist">
+
+</template>
+
+<template name="playlist_search">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="..." id="txtSearchTerm" placeholder="Xin nhập từ khóa hoặc Url clip youtube và nhấn ENTER">
+                <div class="input-group-btn">
+                    <button type="button" id="btnVideosSource" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-youtube"></i>
+                        Youtube
+                        <span class="caret"></span>
+                    </button>
+
+<!--                    <ul class="dropdown-menu dropdown-menu-right" role="menu" id="chgVideoSource">
+                        <li value="youtube">
+                            <a href="#">
+                                <i class="fa fa-youtube"></i>
+                                Youtube
+                            </a>
+                        </li>
+                        <li value="soundcloud">
+                            <a href="#" class="disabled-link">
+                                <i class="fa fa-soundcloud"></i>
+                                Sound Cloud
+                            </a>
+                        </li>
+                        <li value="vimeo">
+                            <a href="#" class="disabled-link">
+                                <i class="fa fa-vimeo-square"></i>
+                                Vimeo
+                            </a>
+                        </li>
+                    </ul>-->
+                </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+        </div>
+    </div>
+
+    {{> Template.dynamic template=resultTemplate.template data=resultTemplate.data}}
+</template>
+
+<template name="playlist-search-empty-result">
+    <div class="emptyListInfo">
+        <i class="fa fa-search"></i>
+        <h4>Không tìm thấy :( </h4>
+
+        <p>Yêu cầu tìm kiếm không trả lại kết quả nào. Xin thử lại với yêu cầu khác.</p>
+    </div>
+</template>
+
+<template name="playlist-search-has-result">
+    <ol class="videoList">
+{{#each items}}
+        <li class="videoListEntry">
+            <div class="header">
+                <h5><i class="fa fa-youtube"></i>&nbsp;{{title}}</h5>
+            </div>
+            <div class="content">
+                <div class="list-container">
+                    <!--
+                        YouTube still supplies us only with 4:3 thumbnails, even if the video (and most of them are) 16:9.
+                        Because we cannot alter the images, we have to do some CSS trickery to display them correctly. Sadly,
+                        this requires more markup than just a simple <img /> tag.
+                    -->
+                    <div class="thumbnailContainer aspectFourByThreeLetterboxed">
+                        <div class="thumbnailClip">
+                            <img src="{{thumbnails.high.url}}">
+                            <span class="thumbnail-info">{{duration}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-container">
+                    <p>{{description}}</p>
+                </div>
+
+            </div>
+        </li>
+    {{/each}}
+    </ol>
+</template>
+
+<template name="listChannelsByMe">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Danh sách kênh của tôi</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Miêu tả</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each channels}}
+                        <tr>
+                            <td>{{title}}</td>
+                            <td>{{description}}</td>
+                            <td>
+                                <a href="{{pathFor 'detailChannel'}}" class="btn btn-info">
+                                    <i class="fa fa-info"></i>
+                                    Chi tiết
+                                </a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>
