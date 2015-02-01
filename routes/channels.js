@@ -59,6 +59,13 @@ ChannelController = RouteController.extend({
             var channel = this.channel(), user = Meteor.user();
             Session.set('title', titlePage({title: channel.title}));
             Session.set('resultSearch',{template : 'playlist-search-empty-result',data :{}});
+            Session.set('paginatedItem',{});
+            var paginatedResultSearchItems = {
+                total : 1,
+                page :!1,
+                maxVisible : 1
+            }
+            Session.set('paginatedResultSearchItems',paginatedResultSearchItems);
         }
     },
     onStop: function () {

@@ -186,6 +186,7 @@
     </div>
 
     {{> Template.dynamic template=resultTemplate.template data=resultTemplate.data}}
+    <div class="text-center">{{>paginatedResultSearchItems}}</div>
 </template>
 
 <template name="playlist-search-empty-result">
@@ -226,6 +227,10 @@
         </li>
     {{/each}}
     </ol>
+</template>
+
+<template name="paginatedResultSearchItems">
+    <div id="paginatedResultSearchItems"></div>
 </template>
 
 <template name="listChannelsByMe">

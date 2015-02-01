@@ -101,6 +101,39 @@ if (Meteor.isServer) {
             }else{
                 return rs;
             }
+        },
+        'searchYoutube2' : function(term){
+            var data = Async.runSync(function(done){
+                YoutubeApi.search.list({
+                    part: "snippet",
+                    type: "video",
+                    maxResults: 50,
+                    regionCode : 'vn',
+                    q: term
+                }, function (err, data) {
+                    //done(err,data);
+                    if(!err){
+                        var videoIds =_.pluck(_.pluck(data.items,'id'),'videoId');
+                        YoutubeApi.videos.list({
+                            part : 'contentDetails',
+                            type :'video',
+                            id : videoIds
+                        },function(err1,data1){
+                            if(err1) throw new Meteor.Error(err1);
+                            done(null, _.extend(data,{durations : data1}));
+                        });
+                    }else{
+                        if(err) throw new Meteor.Error(err);
+                        //done(err,data);
+                    }
+                })
+            });
+
+            if(!data.error){
+                return data.result
+            }else{
+                return 0;
+            }
         }
     });
     Accounts.onCreateUser(function (option, user) {

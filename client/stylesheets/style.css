@@ -344,3 +344,7 @@ ol.videoList > li.videoListEntry .content > .list-container {
     height: 100%;
     vertical-align: top;
 }
+
+.text-center{
+    text-align: center;
+}
