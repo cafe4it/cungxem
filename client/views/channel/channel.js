@@ -1,13 +1,13 @@
 AutoForm.hooks({
     insertChannelForm: {
-        before: {
+/*        before: {
             insert: function (doc, template) {
                 var currentUser = Meteor.userId();
                 _.extend(doc, {"createdBy": currentUser, "modBy": currentUser});
                 //console.log(doc);
                 return doc;
             }
-        },
+        },*/
         onSuccess: function (operation, result, template) {
             Router.go('detailChannel', {_id: result});
         }

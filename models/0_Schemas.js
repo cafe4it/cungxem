@@ -57,11 +57,41 @@ Schemas.Channel = new SimpleSchema({
         label: 'Không bật Chat'
     },
     createdBy: {
-        type: String
+        type: String,
+        autoValue: function() {
+            if (this.isInsert) {
+                return Meteor.userId();
+            } else if (this.isUpsert) {
+                return {$setOnInsert: Meteor.userId()};
+            } else {
+                this.unset();
+            }
+        }
+    },
+    createdAt :{
+        type : Date,
+        autoValue: function() {
+            if (this.isInsert) {
+                return new Date;
+            } else if (this.isUpsert) {
+                return {$setOnInsert: new Date};
+            } else {
+                this.unset();
+            }
+        }
     },
     modBy: {
         type: String,
-        label: 'Điều hành bởi'
+        label: 'Điều hành bởi',
+        autoValue: function() {
+            if (this.isInsert) {
+                return Meteor.userId();
+            } else if (this.isUpsert) {
+                return {$setOnInsert: Meteor.userId()};
+            } else {
+                this.unset();
+            }
+        }
     },
     player:{
         type : Schemas.Player,
