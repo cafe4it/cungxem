@@ -70,7 +70,44 @@ var searchYoutube2 = function (term) {
     }
 }
 
-var getPaginatedItems = function (items, page) {
+var searchYoutubeApiV2 = function (keyword) {
+    if (!_.isEmpty(keyword)) {
+        Session.set('resultSearch', {template: 'loading'});
+        Meteor.call('searchYoutubeApiV2', keyword, function (err, rs) {
+            if (!err && rs && rs.totalItems > 0) {
+                var items = _.map(rs.items, function (i) {
+                    var item = _.pick(i, 'id', 'title', 'description', 'thumbnail', 'duration');
+                    var duration = moment.utc(item.duration * 1000).format("HH:mm:ss");
+                    return _.extend(item, {kind: 'youtube',duration : duration});
+                });
+                Session.set('searchResultItems', items);
+                getPaginatedItemsV2(1);
+            } else {
+                Session.set('resultSearch', {template: 'playlist-search-empty-result'});
+            }
+        })
+    } else {
+        Session.set('resultSearch', {template: 'playlist-search-empty-result'});
+    }
+}
+
+var getPaginatedItemsV2 = function (page) {
+    var page = page || 1,
+        items = Session.get('searchResultItems'),
+        per_page = 3,
+        offset = (page - 1 ) * per_page,
+        paginatedItems = _.rest(items, offset).slice(0, per_page);
+    Session.set('paginatedResultSearchItems',{
+        total : Math.ceil(items.length / per_page),
+        page : page,
+        maxVisible : 10
+    })
+    $('#paginatedResultSearchItems').bootpag(Session.get('paginatedResultSearchItems'));
+    //console.log(Session.get('paginatedResultSearchItems'))
+    Session.set('resultSearch', {template: 'playlist-search-has-result', data: {items: paginatedItems}})
+}
+
+/*var getPaginatedItems = function (items, page) {
     var page = page || 1,
         per_page = 3,
         offset = (page - 1 ) * per_page,
@@ -90,17 +127,17 @@ var getPaginatedItems2 = function (page) {
         perPage = 3,
         offset = (page - 1) * perPage,
         paginatedItems = _.rest(items, offset).slice(0, perPage);
-        Session.set('paginatedResultSearchItems',{
-            total : Math.ceil(items.length / perPage),
-            page : page,
-            maxVisible : 10
-        });
+    Session.set('paginatedResultSearchItems', {
+        total: Math.ceil(items.length / perPage),
+        page: page,
+        maxVisible: 10
+    });
     //paginatedResultDep.changed();
     generatePaginationResultSearch();
-    console.log(Session.get('paginatedResultSearchItems'));
+    //console.log(Session.get('paginatedResultSearchItems'));
 
     Session.set('resultSearch', {template: 'playlist-search-has-result', data: {items: paginatedItems}})
-}
+}*/
 
 var sendChat = function (b) {
     var msg = $('#txtMessage').val(), userId = Meteor.userId(), username = Meteor.user().username, channelId = Router.current().params._id;
@@ -132,7 +169,7 @@ Template.detailChannel.events({
 })
 
 //var paginatedResultDep = new Tracker.Dependency;
-var generatePaginationResultSearch = function(){
+var generatePaginationResultSearch = function () {
     Meteor.setTimeout(function () {
         //paginatedResultDep.depend()
         var paginatedResultSearchItems = Session.get('paginatedResultSearchItems');
@@ -140,8 +177,8 @@ var generatePaginationResultSearch = function(){
             paginatedResultSearchItems
         ).on('page', function (event, num) {
                 event.preventDefault();
-                if(Session.get('paginatedResultSearchItems').total > 1){
-                    getPaginatedItems2(num);
+                if (Session.get('paginatedResultSearchItems').total > 1) {
+                    getPaginatedItemsV2(num);
                 }
             });
     }, 0)
@@ -172,7 +209,7 @@ Template.playlist_search.events({
         e.preventDefault();
         if (e.keyCode == 13) {
             var term = $('#txtSearchTerm').val();
-            searchYoutube2(term);
+            searchYoutubeApiV2(term);
         }
     }
 });

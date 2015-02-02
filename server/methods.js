@@ -32,7 +32,7 @@ if (Meteor.isServer) {
                 console.log(ex);
             }
         },
-        'searchYoutube' : function(term){
+/*        'searchYoutube' : function(term){
             var a = function(term,callback){
                 YoutubeApi.search.list({
                     part: "snippet",
@@ -42,7 +42,7 @@ if (Meteor.isServer) {
                     q: term
                 }, function (err, data) {
                     if(err) throw new Meteor.Error(err);
- /*                   if(data && data.pageInfo.totalResults > 0){
+ *//*                   if(data && data.pageInfo.totalResults > 0){
 
                         var videoIds =_.pluck(_.pluck(data.items,'id'),'videoId');
                         YoutubeApi.videos.list({
@@ -56,7 +56,7 @@ if (Meteor.isServer) {
                         })
                     }else{
                         callback(err,data);
-                    }*/
+                    }*//*
                     callback(err,data);
                 });
             }
@@ -134,6 +134,18 @@ if (Meteor.isServer) {
             }else{
                 return 0;
             }
+        },*/
+        'searchYoutubeApiV2' : function(term){
+            var data = Async.runSync(function(done){
+                YoutubeApiV2.feeds.videos({
+                    q : term,
+                    'max-results':  50,
+                    region : 'VN'
+                },function(err,rs){
+                    done(err,rs);
+                })
+            });
+            return data.result;
         }
     });
     Accounts.onCreateUser(function (option, user) {

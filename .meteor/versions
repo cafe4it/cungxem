@@ -12,6 +12,8 @@ binary-heap@1.0.2
 blaze@2.0.4
 blaze-tools@1.0.2
 boilerplate-generator@1.0.2
+cafe4it:jquery-bootpag@0.0.1
+cafe4it:youtube-v2-api@0.0.3
 callback-hook@1.0.2
 cfs:power-queue@0.9.11
 cfs:reactive-property@0.0.4
@@ -49,6 +51,7 @@ localstorage@1.0.2
 logging@1.0.6
 meteor@1.1.4
 meteor-platform@1.2.1
+meteorhacks:async@1.0.0
 meteorhacks:fast-render@2.3.0
 meteorhacks:inject-data@1.2.1
 meteorhacks:kadira@2.17.1
