@@ -13,3 +13,7 @@ Meteor.publish('channels', function(){
 Meteor.publish('channelsByMe',function(userId){
      return Channels.find({createdBy : userId});
 });
+
+Meteor.publish('managerUsers',function(){
+    return Meteor.users.find();
+})

@@ -35,8 +35,8 @@
                                aria-expanded="false">{{ currentUser.username }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 {{#if isInRole 'admin'}}
-                                    <li>
-                                        <a href="">
+                                    <li class="{{isActiveRoute regex='managerUsers'}}">
+                                        <a href="{{pathFor 'managerUsers'}}">
                                             <i class="fa fa-fire-extinguisher"></i>
                                             Quản lý site
                                         </a>
