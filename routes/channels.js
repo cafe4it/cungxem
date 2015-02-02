@@ -58,14 +58,6 @@ ChannelController = RouteController.extend({
         if(Meteor.user()){
             var channel = this.channel(), user = Meteor.user();
             Session.set('title', titlePage({title: channel.title}));
-            Session.set('resultSearch',{template : 'playlist-search-empty-result',data :{}});
-            Session.set('paginatedItem',{});
-            var paginatedResultSearchItems = {
-                total : 1,
-                page :!1,
-                maxVisible : 1
-            }
-            Session.set('paginatedResultSearchItems',paginatedResultSearchItems);
         }
     },
     onStop: function () {
@@ -112,12 +104,20 @@ ChannelController = RouteController.extend({
             if (channel.Player) {
 
             }
-
+            var playlistSize = 0;
             if (channel.playlist) {
-
+                playlistSize = _.size(channel.playlist);
+                playlistTemplate = {
+                    template : 'channel_playlist',
+                    data : {
+                        items : channel.playlist
+                    }
+                }
             }
 
-            _.extend(channel, {isMod: isMod, playlistTemplate: playlistTemplate, playerTemplate: playerTemplate});
+            Session.set('playlistTemplate',playerTemplate);
+
+            _.extend(channel, {isMod: isMod, playlistTemplate: playlistTemplate, playerTemplate: playerTemplate,playlistSize : playlistSize});
 
             //console.log(channel);
 

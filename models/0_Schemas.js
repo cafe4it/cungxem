@@ -9,7 +9,7 @@ Schemas.Player = new SimpleSchema({
         type : String,
         optional : true
     },
-    source : {
+    kind : {
         type : String,
         optional : true
     },
@@ -30,6 +30,29 @@ Schemas.Player = new SimpleSchema({
         optional : true
     }
 });
+Schemas.PlaylistItem = new SimpleSchema({
+    id : {
+        type : String
+    },
+    kind : {
+        type : String
+    },
+    title : {
+        type : String
+    },
+    description : {
+        type : String
+    },
+    duration : {
+        type : String
+    },
+    thumbnail : {
+        type : String
+    },
+    watchUrl : {
+        type : String
+    }
+})
 Schemas.Channel = new SimpleSchema({
     title: {
         type: String,
@@ -98,7 +121,7 @@ Schemas.Channel = new SimpleSchema({
         optional : true
     },
     playlist: {
-        type: [String],
+        type: [Schemas.PlaylistItem],
         optional: true
     }
 });

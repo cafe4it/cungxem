@@ -39,9 +39,11 @@
             <div class="clear"></div>
             <div id="chat-input">
                 <div class="input-group">
-                    <input id="txtMessage" type="text" class="form-control" placeholder="Chia sẻ cảm nghĩ... và nhấn ENTER">
+                    <input id="txtMessage" type="text" class="form-control"
+                           placeholder="Chia sẻ cảm nghĩ... và nhấn ENTER">
                           <span class="input-group-btn">
-                            <button id="btnEmoji" class="btn btn-default" type="button"><i class="fa fa-smile-o"></i></button>
+                            <button id="btnEmoji" class="btn btn-default" type="button"><i class="fa fa-smile-o"></i>
+                            </button>
                           </span>
                 </div>
             </div>
@@ -83,7 +85,7 @@
                     <li class="active" role="tab">
                         <a href="#playlist" data-toggle="tab">
                             <i class="fa fa-list"></i>
-                            Danh sách chờ <span class="badge">0</span>
+                            Danh sách chờ <span class="badge">{{channel.playlistSize}}</span>
                         </a>
                     </li>
                     {{#if channel.isMod}}
@@ -116,9 +118,10 @@
         <div class="player-overlay-textbox">
             <h3>Hiện tại không có video nào đang chạy.</h3>
             {{#if isMod }}
-            <p>Hãy chọn video từ <em style="color:#4996CA">Danh sách chờ </em>hoặc Tìm kiếm video mới</p>
+                <p>Hãy chọn video từ <em style="color:#4996CA">Danh sách chờ </em>hoặc Tìm kiếm video mới</p>
             {{else}}
                 <p>Hãy chờ người quản trị kênh...</p>
+
                 <p style="color: green">Hoặc bạn có thể tự tạo kênh cho riêng mình và bắt đầu chia sẻ</p>
             {{/if}}
         </div>
@@ -144,44 +147,75 @@
     </div>
 </template>
 
-<template name="channel-playlist">
-
+<template name="channel_playlist">
+    <ol class="videoList">
+        {{#each items}}
+            <li class="videoListEntry">
+                <div class="header">
+                    <h5><i class="fa fa-youtube"></i>&nbsp;{{title}}</h5>
+                </div>
+                <div class="content">
+                    <div class="list-container">
+                        <!--
+                            YouTube still supplies us only with 4:3 thumbnails, even if the video (and most of them are) 16:9.
+                            Because we cannot alter the images, we have to do some CSS trickery to display them correctly. Sadly,
+                            this requires more markup than just a simple <img /> tag.
+                        -->
+                        <div class="thumbnailContainer aspectFourByThreeLetterboxed">
+                            <div class="thumbnailClip">
+                                <img src="{{thumbnail}}">
+                                <span class="thumbnail-info">{{duration}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-container">
+                        <p>{{description}}</p>
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+    </ol>
 </template>
 
 <template name="playlist_search">
     <div class="row">
         <div class="col-md-12">
             <div class="input-group">
-                <input type="text" class="form-control" aria-label="..." id="txtSearchTerm" placeholder="Xin nhập từ khóa hoặc Url clip youtube và nhấn ENTER">
+                <input type="text" class="form-control" aria-label="..." id="txtSearchTerm"
+                       placeholder="Xin nhập từ khóa hoặc Url clip youtube và nhấn ENTER">
+
                 <div class="input-group-btn">
-                    <button type="button" id="btnVideosSource" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <button type="button" id="btnVideosSource" class="btn btn-success dropdown-toggle"
+                            data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-youtube"></i>
                         Youtube
                         <span class="caret"></span>
                     </button>
 
-<!--                    <ul class="dropdown-menu dropdown-menu-right" role="menu" id="chgVideoSource">
-                        <li value="youtube">
-                            <a href="#">
-                                <i class="fa fa-youtube"></i>
-                                Youtube
-                            </a>
-                        </li>
-                        <li value="soundcloud">
-                            <a href="#" class="disabled-link">
-                                <i class="fa fa-soundcloud"></i>
-                                Sound Cloud
-                            </a>
-                        </li>
-                        <li value="vimeo">
-                            <a href="#" class="disabled-link">
-                                <i class="fa fa-vimeo-square"></i>
-                                Vimeo
-                            </a>
-                        </li>
-                    </ul>-->
-                </div><!-- /btn-group -->
-            </div><!-- /input-group -->
+                    <!--                    <ul class="dropdown-menu dropdown-menu-right" role="menu" id="chgVideoSource">
+                                            <li value="youtube">
+                                                <a href="#">
+                                                    <i class="fa fa-youtube"></i>
+                                                    Youtube
+                                                </a>
+                                            </li>
+                                            <li value="soundcloud">
+                                                <a href="#" class="disabled-link">
+                                                    <i class="fa fa-soundcloud"></i>
+                                                    Sound Cloud
+                                                </a>
+                                            </li>
+                                            <li value="vimeo">
+                                                <a href="#" class="disabled-link">
+                                                    <i class="fa fa-vimeo-square"></i>
+                                                    Vimeo
+                                                </a>
+                                            </li>
+                                        </ul>-->
+                </div>
+                <!-- /btn-group -->
+            </div>
+            <!-- /input-group -->
         </div>
     </div>
 
@@ -198,34 +232,56 @@
     </div>
 </template>
 
-<template name="playlist-search-has-result">
+<template name="playlist_search_has_result">
     <ol class="videoList">
-{{#each items}}
-        <li class="videoListEntry">
-            <div class="header">
-                <h5><i class="fa fa-youtube"></i>&nbsp;{{title}}</h5>
-            </div>
-            <div class="content">
-                <div class="list-container">
-                    <!--
-                        YouTube still supplies us only with 4:3 thumbnails, even if the video (and most of them are) 16:9.
-                        Because we cannot alter the images, we have to do some CSS trickery to display them correctly. Sadly,
-                        this requires more markup than just a simple <img /> tag.
-                    -->
-                    <div class="thumbnailContainer aspectFourByThreeLetterboxed">
-                        <div class="thumbnailClip">
-                            <img src="{{thumbnail.hqDefault}}">
-                            <span class="thumbnail-info">{{duration}}</span>
+        {{#each items}}
+            <li class="videoListEntry">
+                <div class="header">
+                    <h5><i class="fa fa-youtube"></i>&nbsp;{{title}}</h5>
+                </div>
+                <div class="content">
+                    <div class="list-container">
+                        <!--
+                            YouTube still supplies us only with 4:3 thumbnails, even if the video (and most of them are) 16:9.
+                            Because we cannot alter the images, we have to do some CSS trickery to display them correctly. Sadly,
+                            this requires more markup than just a simple <img /> tag.
+                        -->
+                        <div class="thumbnailContainer aspectFourByThreeLetterboxed">
+                            <div class="thumbnailClip">
+                                <img src="{{thumbnail.hqDefault}}">
+                                <span class="thumbnail-info">{{duration}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-container">
+                        <p>{{description}}</p>
+                    </div>
+                    <div class="list-container">
+                        <div class="btn-group-vertical" role="group" aria-label="...">
+                            {{#if isExists}}
+                                <button id="btnAddToPlaylist_K{{channelId}}{{id}}" type="button"
+                                        class="btn btn-block btn-default" data-toggle="tooltip" data-placement="left"
+                                        title="Loại trừ khỏi danh sách chờ" data-channelId="{{channelId}}"
+                                        data-id="{{id}}">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            {{else}}
+                                <button id="btnAddToPlaylist_K{{channelId}}{{id}}" type="button"
+                                        class="btn btn-block btn-success" data-toggle="tooltip" data-placement="left"
+                                        title="Thêm vào danh sách chờ" data-channelId="{{channelId}}" data-id="{{id}}">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            {{/if}}
+                            <button id="btnPlayNow_N{{channelId}}{{id}}" type="button" class="btn btn-block btn-danger"
+                                    data-toggle="tooltip" data-placement="left" title="Phát video ngay"
+                                    data-channelId="{{channelId}}" data-id="{{id}}">
+                                <i class="fa fa-youtube-play"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="list-container">
-                    <p>{{description}}</p>
-                </div>
-
-            </div>
-        </li>
-    {{/each}}
+            </li>
+        {{/each}}
     </ol>
 </template>
 

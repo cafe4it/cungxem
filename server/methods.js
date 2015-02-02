@@ -32,109 +32,30 @@ if (Meteor.isServer) {
                 console.log(ex);
             }
         },
-/*        'searchYoutube' : function(term){
-            var a = function(term,callback){
-                YoutubeApi.search.list({
-                    part: "snippet",
-                    type: "video",
-                    maxResults: 50,
-                    regionCode : 'vn',
-                    q: term
-                }, function (err, data) {
-                    if(err) throw new Meteor.Error(err);
- *//*                   if(data && data.pageInfo.totalResults > 0){
-
-                        var videoIds =_.pluck(_.pluck(data.items,'id'),'videoId');
-                        YoutubeApi.videos.list({
-                            part : 'contentDetails',
-                            type :'video',
-                            id : videoIds,
-                            regionCode : 'vn'
-                        },function(err1,data1){
-                            if(err1) throw new Meteor.Error(err1);
-                            callback(err1,data1);
-                        })
-                    }else{
-                        callback(err,data);
-                    }*//*
-                    callback(err,data);
-                });
-            }
-            var b = Meteor.wrapAsync(a);
-            var rs = b(term);
-            var self = this;
-            if(rs && rs.pageInfo.totalResults > 0){
-                var d = function(videoIds,callback){
-                    self.unblock();
-                    YoutubeApi.videos.list({
-                        part : 'contentDetails',
-                        type :'video',
-                        id : videoIds
-                    },function(err1,data1){
-                        if(err1) throw new Meteor.Error(err1);
-                        callback(err1,data1);
+        'addToPlaylist' : function(item){
+            try{
+                var rs = Async.runSync(function(done){
+                    Channels.update({_id : item.channelId},{
+                        $push : {
+                            playlist : {
+                                id : item.id,
+                                kind : item.kind,
+                                title : item.title,
+                                description : item.description,
+                                thumbnail : item.thumbnail.hqDefault,
+                                duration : item.duration,
+                                watchUrl : item.url
+                            }
+                        }
+                    },function(err,rs){
+                        done(err,rs);
                     });
-                };
-                var videoIds =_.pluck(_.pluck(rs.items,'id'),'videoId');
-
-                var bb = Meteor.wrapAsync(d);
-                var rss = bb(videoIds);
-
-                var url = _.template("https://www.youtube.com/watch?v=<%=id%>");
-                //var moment = moment();
-                var items = _.map(rs.items,function(i){
-                    var duration = _.findWhere(rss.items,{id : i.id.videoId}).contentDetails.duration || 0;
-                    duration = moment.utc(moment.duration(duration).asMilliseconds()).format("HH:mm:ss");
-                    return {
-                        _id : i.id.videoId,
-                        kind : 'youtube',
-                        url : url({id : i.id.videoId}),
-                        title : i.snippet.title,
-                        description : i.snippet.description,
-                        thumbnails : i.snippet.thumbnails,
-                        duration : duration
-                    }
-                });
-
-                //console.log(items);
-                return items;
-            }else{
+                })
                 return rs;
+            }catch(ex){
+                console.log(ex)
             }
         },
-        'searchYoutube2' : function(term){
-            var data = Async.runSync(function(done){
-                YoutubeApi.search.list({
-                    part: "snippet",
-                    type: "video",
-                    maxResults: 50,
-                    regionCode : 'vn',
-                    q: term
-                }, function (err, data) {
-                    //done(err,data);
-                    if(!err){
-                        var videoIds =_.pluck(_.pluck(data.items,'id'),'videoId');
-                        YoutubeApi.videos.list({
-                            part : 'contentDetails',
-                            type :'video',
-                            id : videoIds
-                        },function(err1,data1){
-                            if(err1) throw new Meteor.Error(err1);
-                            done(null, _.extend(data,{durations : data1}));
-                        });
-                    }else{
-                        if(err) throw new Meteor.Error(err);
-                        //done(err,data);
-                    }
-                })
-            });
-
-            if(!data.error){
-                return data.result
-            }else{
-                return 0;
-            }
-        },*/
         'searchYoutubeApiV2' : function(term){
             var data = Async.runSync(function(done){
                 YoutubeApiV2.feeds.videos({
