@@ -15,6 +15,14 @@ ChannelsByMeController = RouteController.extend({
         return {
             channels: this.channels()
         }
+    }
+    ,
+    action : function(){
+        if (this.ready()) {
+            this.render();
+        } else {
+            this.render('loading');
+        }
     },
     fastRender: true
 });
@@ -125,6 +133,13 @@ ChannelController = RouteController.extend({
                 channel: channel,
                 chatLog : chatCollection.find({channelId: this.params._id}, {userId: {$slice: -5}})
             }
+        }
+    },
+    action : function(){
+        if (this.ready()) {
+            this.render();
+        } else {
+            this.render('loading');
         }
     },
     fastRender: true
