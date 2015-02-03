@@ -107,7 +107,7 @@ Template.detailChannel.events({
         e.preventDefault();
         var fullChannelUrl = Router.current().originalUrl;
         if(fullChannelUrl){
-            var msg = Blaze.toHTMLWithData(Template.shareLink,{channelUrl : fullChannelUrl});
+            var msg = Blaze.toHTMLWithData(Template.shareLink,{channelUrl : Meteor.absoluteUrl(fullChannelUrl)});
             bootbox.dialog({
                 message: msg,
                 title: "Chia sẻ kênh",
