@@ -376,3 +376,15 @@ ol.videoList > li.videoListEntry .content > .list-container:nth-child(3) .btn-bl
 .text-center{
     text-align: center;
 }
+
+.inviteUrlWell {
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    font-weight: 700;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 9px;
+    text-align: center;
+}

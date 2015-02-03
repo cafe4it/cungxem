@@ -60,7 +60,7 @@
                 </div>
                 <div class="panel-footer">
                     <form class="form-inline">
-                        <button id="shareLink" class="btn btn-default">
+                        <button id="shareLink" class="btn btn-default" >
                             <i class="fa fa-users"></i>
                             Mời bạn
                         </button>
@@ -109,6 +109,11 @@
 
         </div>
     </div>
+</template>
+
+<template name="shareLink">
+    <p>Để mời bạn bè hoặc chia sẻ kênh này rất dễ, bạn chỉ việc copy đường link dưới đây và gửi nó đi...</p>
+    <div class="inviteUrlWell">{{channelUrl}}</div>
 </template>
 
 <template name="empty-player">

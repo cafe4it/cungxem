@@ -102,6 +102,26 @@ Template.detailChannel.events({
         if (e.keyCode == 13) {
             sendChat();
         }
+    },
+    'click #shareLink' : function(e,t){
+        e.preventDefault();
+        var fullChannelUrl = Router.current().originalUrl;
+        if(fullChannelUrl){
+            var msg = Blaze.toHTMLWithData(Template.shareLink,{channelUrl : fullChannelUrl});
+            bootbox.dialog({
+                message: msg,
+                title: "Chia sẻ kênh",
+                buttons: {
+                    main: {
+                        label: "Đóng lại",
+                        className: "btn-primary"
+                    }
+                }
+            });
+        }
+    },
+    'click #shareFacebook' : function(e,t){
+        e.preventDefault()
     }
 })
 
