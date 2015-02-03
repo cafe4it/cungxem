@@ -105,10 +105,82 @@ Template.detailChannel.events({
     }
 })
 
+Template.channel_playlist.helpers({
+    playlistTemplate : function(){
+/*        var controller = Iron.controller();
+        var playlist = controller.state.get('playlist');
+        var rs = paginatedItems(playlist,3,1);
+        var playlistTemplate = {
+            template : 'channel_playlist_items',
+            data : {
+                items : playlist,
+                total : rs.total_page,
+                page : rs.page,
+                paginatedItems : rs.data
+            }
+
+        }
+
+        Session.set('playlistTemplate',playlistTemplate);*/
+        return Session.get('playlistTemplate');
+    }
+})
+
+Template.channel_playlist.rendered = function(){
+    var playlistTemplate = Session.get('playlistTemplate');
+    var self = this;
+    $('#playlistPaginated').bootpag({
+        total : playlistTemplate.data.total,
+        page : playlistTemplate.data.page || 1,
+        maxVisible : 10
+    }).on('page',function(e,p){
+        e.preventDefault();
+        playlistTemplate = Session.get('playlistTemplate');
+        var rs = paginatedItems(playlistTemplate.data.items, 3 ,p);
+        playlistTemplate = {
+            data : {
+                total : rs.total_page,
+                items : rs.items,
+                page : rs.page,
+                paginatedItems : rs.data
+            },
+            template : 'channel_playlist_items'
+        }
+        Session.set('playlistTemplate',playlistTemplate);
+    })
+}
+
+/*Template.channel_playlist.created = function(){
+
+}
+
+
+var generatePaginatedPlaylist = function(){
+
+    var playlistTemplate = Session.get('playlistTemplate');
+    console.log(playlistTemplate)
+    $('#playlistPaginated').bootpag({
+        total : playlistTemplate.data.total,
+        page : playlistTemplate.data.page || 1,
+        maxVisible : 10
+    }).on('page',function(e,p){
+        e.preventDefault();
+        var playlistTemplate = Session.get('playlistTemplate');
+        var rs = paginatedItems(playlistTemplate.data.items,3, p);
+        playlistTemplate.data.paginatedItems = rs.data;
+        playlistTemplate.data.page = rs.page;
+        playlistTemplate.data.total= rs.total_page;
+        Session.set('playlistTemplate',playlistTemplate);
+        console.log(playlistTemplate)
+    })
+}
+Template.channel_playlist.rendered = function(){
+    generatePaginatedPlaylist();
+}*/
+
 //var paginatedResultDep = new Tracker.Dependency;
 var generatePaginationResultSearch = function () {
     Meteor.setTimeout(function () {
-        //paginatedResultDep.depend()
         var paginatedResultSearchItems = Session.get('paginatedResultSearchItems');
         $('#paginatedResultSearchItems').bootpag(
             paginatedResultSearchItems
@@ -170,6 +242,7 @@ Template.playlist_search_has_result.events({
                         if(rs.result == 1){
                             item.isExists = true;
                             searchResultItems[index] = item;
+
                             Session.set('searchResultItems',searchResultItems);
                             $(buttonId).removeClass('btn-success');
                             $(buttonId).addClass('btn-default');

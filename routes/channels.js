@@ -104,17 +104,22 @@ ChannelController = RouteController.extend({
             var playlistSize = 0;
             if (channel.playlist) {
                 playlistSize = _.size(channel.playlist);
+                var rs = paginatedItems(channel.playlist,3,1);
                 playlistTemplate = {
-                    template : 'channel_playlist',
+                    template : 'channel_playlist_items',
                     data : {
-                        items : channel.playlist
+                        paginatedItems : rs.data,
+                        items : channel.playlist,
+                        page : rs.page,
+                        total : rs.total_page
                     }
                 }
+
             }
 
-            Session.set('playlistTemplate',playerTemplate);
+            Session.set('playlistTemplate',playlistTemplate);
 
-            _.extend(channel, {isMod: isMod, playlistTemplate: playlistTemplate, playerTemplate: playerTemplate,playlistSize : playlistSize});
+            _.extend(channel, {isMod: isMod, playerTemplate: playerTemplate,playlistSize : playlistSize});
 
             //console.log(channel);
 
@@ -123,6 +128,10 @@ ChannelController = RouteController.extend({
                 chatLog : chatCollection.find({channelId: this.params._id}, {userId: {$slice: -5}})
             }
         }
+    },
+    action : function(){
+        this.state.set('playlist', this.channel().playlist);
+        this.render();
     },
     fastRender: true
 });

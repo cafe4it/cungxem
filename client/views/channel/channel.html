@@ -99,7 +99,7 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="playlist">
-                        {{> Template.dynamic template=channel.playlistTemplate.template data=channel.playlistTemplate.data}}
+                        {{> channel_playlist}}
                     </div>
                     {{#if channel.isMod}}
                         <div role="tabpanel" class="tab-pane" id="searchVideos">{{> playlist_search}}</div>
@@ -146,10 +146,16 @@
         {{/if}}
     </div>
 </template>
-
 <template name="channel_playlist">
+    {{> Template.dynamic template=playlistTemplate.template data=playlistTemplate.data}}
+
+    <div class="text-center">
+        {{>paginatedPlaylistItems}}
+    </div>
+</template>
+<template name="channel_playlist_items">
     <ol class="videoList">
-        {{#each items}}
+        {{#each paginatedItems}}
             <li class="videoListEntry">
                 <div class="header">
                     <h5><i class="fa fa-youtube"></i>&nbsp;{{title}}</h5>
@@ -285,6 +291,9 @@
     </ol>
 </template>
 
+<template name="paginatedPlaylistItems">
+    <div id="playlistPaginated"></div>
+</template>
 <template name="paginatedResultSearchItems">
     <div id="paginatedResultSearchItems"></div>
 </template>
