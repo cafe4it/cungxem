@@ -32,6 +32,33 @@ if (Meteor.isServer) {
                 console.log(ex);
             }
         },
+        'updateCurrentPlayOnChannel': function (item) {
+            try {
+                if (Meteor.userId() == item.modBy) {
+                    var rs = Async.runSync(function (done) {
+                        Channels.update({_id: item.channelId}, {
+                            $set: {
+                                player: {
+                                    title: item.video.title,
+                                    description: item.video.description,
+                                    kind: item.video.kind,
+                                    url: item.video.url,
+                                    state: item.video.state,
+                                    currentTime: item.video.currentTime,
+                                    duration: item.video.duration
+                                }
+                            }
+                        }, function (err, result) {
+                            //console.log(err);
+                            done(err, result);
+                        })
+                    })
+                    return rs;
+                }
+            } catch (ex) {
+                console.log(ex);
+            }
+        },
         'addToPlaylist' : function(item){
             try{
                 var rs = Async.runSync(function(done){

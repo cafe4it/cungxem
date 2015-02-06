@@ -26,7 +26,7 @@ Schemas.Player = new SimpleSchema({
         optional : true
     },
     duration : {
-        type : Number,
+        type: String,
         optional : true
     }
 });

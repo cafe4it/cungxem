@@ -69,16 +69,18 @@ ChannelController = RouteController.extend({
         return Channels.findOne({_id: this.params._id});
     },
     onRun : function(){
-        if(Meteor.user()){
+        /* if(Meteor.user()){
             var channel = this.channel();
-            if(channel.Player){
-                if (Meteor.userId() == channel.modBy) {
-                    var player = new Player(channel._id);
-                } else {
-                    var remote = new RemotePlayer(channel._id);
+         if(this.ready()){
+         if(channel.player && !_.isEmpty(channel.player)){
+         if (Meteor.userId() == channel.modBy) {
+         var player = new Player(channel._id);
+         } else {
+         var remote = new RemotePlayer(channel._id);
+         }
                 }
             }
-        }
+         }*/
     },
     data: function () {
         if(Meteor.user()){
@@ -98,9 +100,19 @@ ChannelController = RouteController.extend({
                 }
             }
 
-            if (channel.Player) {
+            if (channel.player && !_.isEmpty(channel.player)) {
+                var player = channel.player;
+                _.extend(player, {channelId: channel._id});
+                switch (player.kind) {
 
+                    default :
+                        _.extend(playerTemplate, {template: 'youtube-player', data: {player: player}});
+                        Session.set('playerTemplate', playerTemplate);
+                        break;
+                }
+                this.state.set('currentPlayer', player);
             }
+
             var playlistSize = 0;
             if (channel.playlist) {
                 playlistSize = _.size(channel.playlist);
@@ -114,14 +126,12 @@ ChannelController = RouteController.extend({
                         total : rs.total_page
                     }
                 }
-
             }
 
             Session.set('playlistTemplate',playlistTemplate);
 
-            _.extend(channel, {isMod: isMod, playerTemplate: playerTemplate,playlistSize : playlistSize});
 
-            //console.log(channel);
+            _.extend(channel, {isMod: isMod, playlistSize: playlistSize});
 
             return {
                 channel: channel,
@@ -130,7 +140,12 @@ ChannelController = RouteController.extend({
         }
     },
     action : function(){
-        this.state.set('playlist', this.channel().playlist);
+        var channel = this.channel();
+        this.state.set('playlist', channel.playlist);
+        this.state.set('channelInfo', {
+            channelId: channel._id,
+            modBy: channel.modBy
+        });
         this.render();
     },
     fastRender: true
