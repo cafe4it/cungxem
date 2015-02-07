@@ -30,7 +30,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.startup(function(){
-    Meteor.release('0.5.6');
+    Meteor.release('0.0.6');
     YoutubeApi.authenticate({
         type: "key",
         key: "AIzaSyAJl6zx7U-2jFG-T6EO43elRgmHNT-fGng"
