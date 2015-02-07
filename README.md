@@ -2,6 +2,10 @@
 Cùng xem video và nghe nhạc với nhau....
 # Cách cài đặt Meteor JS
 https://www.meteor.com/install
+# Cách chạy thử
+```bash
+git clone https://github.com/cafe4it/cungxem.git && cd cungxem && meteor
+```
 # Cách build
 ```bash
 cd cungxem && meteor build --directory ../cungxem-release
