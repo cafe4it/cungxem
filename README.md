@@ -15,6 +15,9 @@ cd cungxem && meteor build --directory ../cungxem-release
 + Linux/Unix
 + Tính đến thời điểm hiện tại thì chưa có cho Window
 
+# Quản trị
++ Hiện tại tính năng này đang được triển khai, tuy nhiên để có quyền admin thì account đăng ký đầu tiên với các username sau : __nxcong, administrator, admin__
+
 # Tương tự
 http://cytu.be
 
