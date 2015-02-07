@@ -10,6 +10,11 @@ cd cungxem && meteor build --directory ../cungxem-release
 + build : https://www.digitalocean.com/community/tutorials/how-to-deploy-a-meteor-js-application-on-ubuntu-14-04-with-nginx
 + source : https://github.com/arunoda/meteor-up
 + source : https://www.meteor.com/try/6
+
+# Môi trường lập trình :
++ Linux/Unix
++ Tính đến thời điểm hiện tại thì chưa có cho Window
+
 # Tương tự
 http://cytu.be
 
