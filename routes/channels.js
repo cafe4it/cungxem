@@ -26,7 +26,7 @@ ChannelAllowGuestController = RouteController.extend({
     }
 });
 
-allowGuest = function(){
+allowGuest = function () {
 
 }
 
@@ -35,12 +35,12 @@ ChannelController = RouteController.extend({
     waitOn: function () {
         return Meteor.subscribe('channel', this.params._id);
     },
-    onBeforeAction : function(){
-        if(!Meteor.user()){
+    onBeforeAction: function () {
+        if (!Meteor.user()) {
             this.render('allowGuest')
-        }else{
-            var channel = this.channel(),user = Meteor.user();
-            if(channel.createdBy != user._id){
+        } else {
+            var channel = this.channel(), user = Meteor.user();
+            if (channel.createdBy != user._id) {
                 var username = user.username;
 
                 MessagesChat.emit('chat', channel._id, username, displayMessage({
@@ -51,14 +51,14 @@ ChannelController = RouteController.extend({
             this.next();
         }
     },
-    onAfterAction : function(){
-        if(Meteor.user()){
+    onAfterAction: function () {
+        if (Meteor.user()) {
             var channel = this.channel(), user = Meteor.user();
             Session.set('title', titlePage({title: channel.title}));
         }
     },
     onStop: function () {
-        if(Meteor.user()){
+        if (Meteor.user()) {
             MessagesChat.emit('chat', this.params._id, Meteor.userId(), displayMessage({
                 username: Meteor.user().username,
                 message: 'đã thoát.'
@@ -68,9 +68,9 @@ ChannelController = RouteController.extend({
     channel: function () {
         return Channels.findOne({_id: this.params._id});
     },
-    onRun : function(){
+    onRun: function () {
         /* if(Meteor.user()){
-            var channel = this.channel();
+         var channel = this.channel();
          if(this.ready()){
          if(channel.player && !_.isEmpty(channel.player)){
          if (Meteor.userId() == channel.modBy) {
@@ -78,12 +78,12 @@ ChannelController = RouteController.extend({
          } else {
          var remote = new RemotePlayer(channel._id);
          }
-                }
-            }
+         }
+         }
          }*/
     },
     data: function () {
-        if(Meteor.user()){
+        if (Meteor.user()) {
             var channel = this.channel();
 
             var isMod = (Meteor.userId() == channel.modBy) ? true : false;
@@ -99,7 +99,7 @@ ChannelController = RouteController.extend({
                     isMod: isMod
                 }
             }
-
+            Session.set('playerTemplate', playerTemplate);
             if (channel.player && !_.isEmpty(channel.player)) {
                 var player = channel.player;
                 _.extend(player, {channelId: channel._id});
@@ -116,30 +116,30 @@ ChannelController = RouteController.extend({
             var playlistSize = 0;
             if (channel.playlist) {
                 playlistSize = _.size(channel.playlist);
-                var rs = paginatedItems(channel.playlist,3,1);
+                var rs = paginatedItems(channel.playlist, 3, 1);
                 playlistTemplate = {
-                    template : 'channel_playlist_items',
-                    data : {
-                        paginatedItems : rs.data,
-                        items : channel.playlist,
-                        page : rs.page,
-                        total : rs.total_page
+                    template: 'channel_playlist_items',
+                    data: {
+                        paginatedItems: rs.data,
+                        items: channel.playlist,
+                        page: rs.page,
+                        total: rs.total_page
                     }
                 }
             }
 
-            Session.set('playlistTemplate',playlistTemplate);
+            Session.set('playlistTemplate', playlistTemplate);
 
 
             _.extend(channel, {isMod: isMod, playlistSize: playlistSize});
 
             return {
                 channel: channel,
-                chatLog : chatCollection.find({channelId: this.params._id}, {userId: {$slice: -5}})
+                chatLog: chatCollection.find({channelId: this.params._id}, {userId: {$slice: -5}})
             }
         }
     },
-    action : function(){
+    action: function () {
         var channel = this.channel();
         this.state.set('playlist', channel.playlist);
         this.state.set('channelInfo', {

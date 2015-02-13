@@ -53,3 +53,9 @@ Router.route('/dang-xuat', function () {
 }, {
     name: 'Logout'
 });
+
+Router.route('/dieu-khoan-su-dung', {
+    name: 'terms',
+    template: 'terms',
+    path: 'dieu-khoan-su-dung'
+});
