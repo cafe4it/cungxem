@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd3614a0-8b36-4891-970c-3cb3f33fe5c9" name="Default" comment="Sửa lỗi RangeError: Maximum call stack size exceeded.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/0_Schemas.js" afterPath="$PROJECT_DIR$/models/0_Schemas.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/channel/channel.html" afterPath="$PROJECT_DIR$/client/views/channel/channel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/channel/channel.js" afterPath="$PROJECT_DIR$/client/views/channel/channel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/channels.js" afterPath="$PROJECT_DIR$/routes/channels.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/methods.js" afterPath="$PROJECT_DIR$/server/methods.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/lib/player.js" afterPath="$PROJECT_DIR$/client/lib/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/helpers/template.js" afterPath="$PROJECT_DIR$/client/helpers/template.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
+    <list default="true" id="bd3614a0-8b36-4891-970c-3cb3f33fe5c9" name="Default" comment="Player vẫn bị 1 số lỗi nếu như truy cập quá nh">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/0startup.js" afterPath="$PROJECT_DIR$/server/0startup.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cungxem.iws" />
@@ -45,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="accountConfig.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="accountConfig.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/accountConfig.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1170">
-              <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.5329949" vertical-offset="540" max-vertical-offset="1170">
+              <caret line="50" column="3" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -75,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/lib/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42492917" vertical-offset="180" max-vertical-offset="1410">
-              <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+            <state vertical-scroll-proportion="-5.357143" vertical-offset="180" max-vertical-offset="1410">
+              <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -155,7 +147,6 @@
         <option value="$PROJECT_DIR$/client/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/client/lib/remote_player.js" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/server/0startup.js" />
         <option value="$PROJECT_DIR$/routes/mainRoutes.js" />
         <option value="$PROJECT_DIR$/client/views/common/footer.html" />
         <option value="$PROJECT_DIR$/lib/accountConfig.js" />
@@ -167,6 +158,7 @@
         <option value="$PROJECT_DIR$/routes/channels.js" />
         <option value="$PROJECT_DIR$/client/views/channel/channel.js" />
         <option value="$PROJECT_DIR$/client/lib/player.js" />
+        <option value="$PROJECT_DIR$/server/0startup.js" />
       </list>
     </option>
   </component>
@@ -519,7 +511,13 @@
       <option name="project" value="LOCAL" />
       <updated>1423879473010</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Player vẫn bị 1 số lỗi nếu như truy cập quá nh">
+      <created>1423899987811</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1423899987811</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -569,7 +567,8 @@
     <MESSAGE value="Thêm điều kh" />
     <MESSAGE value="Thêm điều khoản sử dụng" />
     <MESSAGE value="Sửa lỗi RangeError: Maximum call stack size exceeded." />
-    <option name="LAST_COMMIT_MESSAGE" value="Sửa lỗi RangeError: Maximum call stack size exceeded." />
+    <MESSAGE value="Player vẫn bị 1 số lỗi nếu như truy cập quá nh" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player vẫn bị 1 số lỗi nếu như truy cập quá nh" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -841,26 +840,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/0startup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="600">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/views/layouts/default.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="370">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/accountConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1170">
-          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -955,8 +938,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/lib/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42492917" vertical-offset="180" max-vertical-offset="1410">
-          <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+        <state vertical-scroll-proportion="-5.357143" vertical-offset="180" max-vertical-offset="1410">
+          <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/0startup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6243655" vertical-offset="189" max-vertical-offset="600">
+          <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/accountConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5329949" vertical-offset="540" max-vertical-offset="1170">
+          <caret line="50" column="3" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
           <folding />
         </state>
       </provider>
