@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd3614a0-8b36-4891-970c-3cb3f33fe5c9" name="Default" comment="Sửa lỗi release">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/accountConfig.js" afterPath="$PROJECT_DIR$/lib/accountConfig.js" />
+    <list default="true" id="bd3614a0-8b36-4891-970c-3cb3f33fe5c9" name="Default" comment="Thêm điều khoản sử dụng">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/channel/channel.js" afterPath="$PROJECT_DIR$/client/views/channel/channel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/channels.js" afterPath="$PROJECT_DIR$/routes/channels.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/common/footer.html" afterPath="$PROJECT_DIR$/client/views/common/footer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/mainRoutes.js" afterPath="$PROJECT_DIR$/routes/mainRoutes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/lib/player.js" afterPath="$PROJECT_DIR$/client/lib/player.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cungxem.iws" />
@@ -33,28 +32,8 @@
       <file leaf-file-name="channels.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/channels.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2366" max-vertical-offset="2760">
-              <caret line="101" column="58" selection-start-line="101" selection-start-column="58" selection-end-line="101" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/views/common/footer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.0" vertical-offset="168" max-vertical-offset="720">
-              <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="terms.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/views/common/terms.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24324325" vertical-offset="0" max-vertical-offset="370">
-              <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="491" max-vertical-offset="2580">
+              <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -83,8 +62,8 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/lib/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
-              <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
+              <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -100,21 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="methods.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/methods.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1451" max-vertical-offset="1905">
-              <caret line="103" column="28" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="channel.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="channel.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/views/channel/channel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1434" max-vertical-offset="5325">
-              <caret line="335" column="63" selection-start-line="335" selection-start-column="37" selection-end-line="335" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.48818898" vertical-offset="4119" max-vertical-offset="5175">
+              <caret line="287" column="19" selection-start-line="287" selection-start-column="19" selection-end-line="287" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -172,16 +141,16 @@
         <option value="$PROJECT_DIR$/models/0_Schemas.js" />
         <option value="$PROJECT_DIR$/server/methods.js" />
         <option value="$PROJECT_DIR$/client/views/channel/channel.html" />
-        <option value="$PROJECT_DIR$/client/views/channel/channel.js" />
         <option value="$PROJECT_DIR$/client/lib/remote_player.js" />
-        <option value="$PROJECT_DIR$/client/lib/player.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/server/0startup.js" />
-        <option value="$PROJECT_DIR$/routes/channels.js" />
         <option value="$PROJECT_DIR$/routes/mainRoutes.js" />
         <option value="$PROJECT_DIR$/client/views/common/footer.html" />
         <option value="$PROJECT_DIR$/lib/accountConfig.js" />
         <option value="$PROJECT_DIR$/client/views/common/terms.html" />
+        <option value="$PROJECT_DIR$/client/lib/player.js" />
+        <option value="$PROJECT_DIR$/routes/channels.js" />
+        <option value="$PROJECT_DIR$/client/views/channel/channel.js" />
       </list>
     </option>
   </component>
@@ -606,7 +575,13 @@
       <option name="project" value="LOCAL" />
       <updated>1423792772237</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Thêm điều khoản sử dụng">
+      <created>1423803820399</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1423803820399</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -653,7 +628,9 @@
     <MESSAGE value="Thêm mô tả cách build và deploy" />
     <MESSAGE value="Thêm mô tả cách run, build và deploy" />
     <MESSAGE value="Sửa lỗi release" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sửa lỗi release" />
+    <MESSAGE value="Thêm điều kh" />
+    <MESSAGE value="Thêm điều khoản sử dụng" />
+    <option name="LAST_COMMIT_MESSAGE" value="Thêm điều khoản sử dụng" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -971,26 +948,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/lib/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="990">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/0startup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="600">
           <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/channel/channel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1434" max-vertical-offset="5325">
-          <caret line="335" column="63" selection-start-line="335" selection-start-column="37" selection-end-line="335" selection-end-column="63" />
           <folding />
         </state>
       </provider>
@@ -1003,10 +964,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/channels.js">
+    <entry file="file://$PROJECT_DIR$/lib/accountConfig.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1916" max-vertical-offset="2760">
-          <caret line="101" column="58" selection-start-line="101" selection-start-column="58" selection-end-line="101" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1170">
+          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -1019,26 +980,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/common/terms.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44594595" vertical-offset="0" max-vertical-offset="370">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/views/common/footer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.0" vertical-offset="168" max-vertical-offset="720">
+        <state vertical-scroll-proportion="0.53781515" vertical-offset="168" max-vertical-offset="720">
           <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/accountConfig.js">
+    <entry file="file://$PROJECT_DIR$/routes/channels.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1170">
-          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="491" max-vertical-offset="2580">
+          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/common/terms.html">
+    <entry file="file://$PROJECT_DIR$/client/lib/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24324325" vertical-offset="0" max-vertical-offset="370">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/channel/channel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48818898" vertical-offset="4119" max-vertical-offset="5175">
+          <caret line="287" column="19" selection-start-line="287" selection-start-column="19" selection-end-line="287" selection-end-column="19" />
           <folding />
         </state>
       </provider>

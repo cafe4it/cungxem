@@ -120,13 +120,13 @@ var initPlayers = function (controller, currentPlayer, channelInfo) {
         var currentPlayer = currentPlayer || controller.state.get('currentPlayer');
         var channelInfo = channelInfo || controller.state.get('channelInfo');
         if (currentPlayer && !_.isEmpty(currentPlayer)) {
-            Meteor.setTimeout(function () {
-                if (Meteor.userId() == channelInfo.modBy) {
-                    selfPlayer = new Player(channelInfo.channelId, currentPlayer);
-                } else {
-                    remotePlayer = new RemotePlayer(channelInfo.channelId);
-                }
-            }, 2000)
+            if (Meteor.userId() == channelInfo.modBy) {
+                var player = new Player(channelInfo.channelId, currentPlayer);
+                selfPlayer = player;
+            } else {
+                var player = new RemotePlayer(channelInfo.channelId);
+                remotePlayer = player;
+            }
         }
     } catch (ex) {
         console.log(ex);
@@ -168,21 +168,6 @@ Template.detailChannel.events({
 
 Template.channel_playlist.helpers({
     playlistTemplate: function () {
-        /*        var controller = Iron.controller();
-         var playlist = controller.state.get('playlist');
-         var rs = paginatedItems(playlist,3,1);
-         var playlistTemplate = {
-         template : 'channel_playlist_items',
-         data : {
-         items : playlist,
-         total : rs.total_page,
-         page : rs.page,
-         paginatedItems : rs.data
-         }
-
-         }
-
-         Session.set('playlistTemplate',playlistTemplate);*/
         return Session.get('playlistTemplate');
     }
 })
@@ -241,17 +226,21 @@ Template.channel_playlist.rendered = function () {
 
 //var paginatedResultDep = new Tracker.Dependency;
 var generatePaginationResultSearch = function () {
-    Meteor.setTimeout(function () {
-        var paginatedResultSearchItems = Session.get('paginatedResultSearchItems');
-        $('#paginatedResultSearchItems').bootpag(
-            paginatedResultSearchItems
-        ).on('page', function (event, num) {
-                event.preventDefault();
-                if (Session.get('paginatedResultSearchItems').total > 1) {
-                    getPaginatedItemsV2(num);
-                }
-            });
-    }, 0)
+    try {
+        Meteor.setTimeout(function () {
+            var paginatedResultSearchItems = Session.get('paginatedResultSearchItems');
+            $('#paginatedResultSearchItems').bootpag(
+                paginatedResultSearchItems
+            ).on('page', function (event, num) {
+                    event.preventDefault();
+                    if (Session.get('paginatedResultSearchItems').total > 1) {
+                        getPaginatedItemsV2(num);
+                    }
+                });
+        }, 0)
+    } catch (ex) {
+        console.log(ex)
+    }
 }
 
 Template.playlist_search.rendered = function () {
@@ -335,6 +324,7 @@ Template.playlist_search_has_result.events({
                         }
                         Meteor.call('updateCurrentPlayOnChannel', item, function (err, rs) {
                             if (!rs.error) {
+                                //var selfPlayer = Session.get('selfPlayer');
                                 selfPlayer.src(item.video.url);
                                 selfPlayer.play();
                             }

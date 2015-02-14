@@ -40,6 +40,8 @@ ChannelController = RouteController.extend({
             this.render('allowGuest')
         } else {
             var channel = this.channel(), user = Meteor.user();
+            selfPlayer = null;
+            remotePlayer = null;
             if (channel.createdBy != user._id) {
                 var username = user.username;
 
@@ -67,20 +69,6 @@ ChannelController = RouteController.extend({
     },
     channel: function () {
         return Channels.findOne({_id: this.params._id});
-    },
-    onRun: function () {
-        /* if(Meteor.user()){
-         var channel = this.channel();
-         if(this.ready()){
-         if(channel.player && !_.isEmpty(channel.player)){
-         if (Meteor.userId() == channel.modBy) {
-         var player = new Player(channel._id);
-         } else {
-         var remote = new RemotePlayer(channel._id);
-         }
-         }
-         }
-         }*/
     },
     data: function () {
         if (Meteor.user()) {
