@@ -32,6 +32,13 @@ if (Meteor.isServer) {
                 console.log(ex);
             }
         },
+        'updatePlayerPlayedTime': function (item) {
+            try {
+
+            } catch (ex) {
+
+            }
+        },
         'updateCurrentPlayOnChannel': function (item) {
             try {
                 if (Meteor.userId() == item.modBy) {
@@ -45,12 +52,15 @@ if (Meteor.isServer) {
                                     url: item.video.url,
                                     state: item.video.state,
                                     currentTime: item.video.currentTime,
-                                    duration: item.video.duration
+                                    duration: item.video.duration,
+                                    addedTime: Date.create(),
+                                    playedTime: Date.create()
                                 }
                             }
                         }, function (err, result) {
                             //console.log(err);
                             done(err, result);
+
                         })
                     })
                     return rs;

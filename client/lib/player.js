@@ -1,18 +1,32 @@
 if (Meteor.isClient) {
     this.Player = function Player(id, currentPlayer) {
-        try {
-            var myPlayer = videojs(playerId({id: id}));
+        var myPlayer = videojs(playerId({id: id}));
+        myPlayer.ready(function () {
+            var myPlayer = this;
+            if (currentPlayer && !_.isEmpty(currentPlayer)) {
+                myPlayer.src(currentPlayer.url);
 
-            myPlayer.ready(function () {
-                if (currentPlayer && !_.isEmpty(currentPlayer)) {
-                    myPlayer.src(currentPlayer.url);
-                    if (currentPlayer.currentTime > 0) myPlayer.currentTime(currentPlayer.currentTime);
+                //(playedTime < currentPlayer.duration) ? myPlayer.currentTime(playedTime) : myPlayer.currentTime(currentPlayer.duration);
+                var playedTime = moment().diff(currentPlayer.playedTime, 'seconds');
+                if (playedTime < currentPlayer.duration) {
+                    myPlayer.currentTime(playedTime);
                     (currentPlayer.state) ? myPlayer.pause() : myPlayer.play();
+                } else {
+                    myPlayer.currentTime(currentPlayer.duration);
+                    myPlayer.pause();
                 }
-            });
+
+            }
 
             myPlayer.on('loadedmetadata', function () {
-                //console.log('dang tai/.//')
+                /*var playedTime = moment().diff(currentPlayer.playedTime,'seconds');
+                 if(playedTime < currentPlayer.duration){
+                 myPlayer.currentTime(playedTime);
+                 (currentPlayer.state) ? myPlayer.pause() : myPlayer.play();
+                 }else{
+                 myPlayer.currentTime(currentPlayer.duration);
+                 myPlayer.pause();
+                 }*/
             });
 
             myPlayer.on('loadstart', function () {
@@ -25,7 +39,7 @@ if (Meteor.isClient) {
             });
 
             myPlayer.on('play', function () {
-                //console.log('play');
+                //console.log('play');Object
 
                 PlayerControls.emit(id + ':player_control', 'played');
             });
@@ -39,11 +53,17 @@ if (Meteor.isClient) {
                 PlayerControls.emit(id + ':player_timeUpdate', id, myPlayer.currentSrc(), myPlayer.currentTime(), myPlayer.paused());
             });
 
-            return myPlayer;
-        } catch (ex) {
-            console.log(ex)
-        }
+            var syncPlayTime = function () {
+                try {
 
+
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+        });
+
+        return myPlayer;
     }
 }
 var updateStateOfPlayer = function (state, currentTime) {

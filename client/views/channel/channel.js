@@ -16,7 +16,7 @@ var searchYoutubeApiV2 = function (keyword) {
             if (!err && rs && rs.totalItems > 0) {
                 var items = _.map(rs.items, function (i) {
                     var item = _.pick(i, 'id', 'title', 'description', 'thumbnail', 'duration');
-                    var duration = moment.utc(item.duration * 1000).format("HH:mm:ss");
+                    //var duration = moment.utc(item.duration * 1000).format("HH:mm:ss");
                     var isExists = false;
                     if (channel.playlist) {
                         isExists = _.some(channel.playlist, function (j) {
@@ -26,7 +26,7 @@ var searchYoutubeApiV2 = function (keyword) {
                     //state = false có nghĩa là pause=false;
                     return _.extend(item, {
                         kind: 'youtube',
-                        duration: duration,
+                        duration: item.duration,
                         url: youtubeWatch({id: item.id}),
                         channelId: channelId,
                         isExists: isExists,
@@ -120,13 +120,15 @@ var initPlayers = function (controller, currentPlayer, channelInfo) {
         var currentPlayer = currentPlayer || controller.state.get('currentPlayer');
         var channelInfo = channelInfo || controller.state.get('channelInfo');
         if (currentPlayer && !_.isEmpty(currentPlayer)) {
-            if (Meteor.userId() == channelInfo.modBy) {
-                var player = new Player(channelInfo.channelId, currentPlayer);
-                selfPlayer = player;
-            } else {
-                var player = new RemotePlayer(channelInfo.channelId);
-                remotePlayer = player;
-            }
+            Meteor.setTimeout(function () {
+                if (Meteor.userId() == channelInfo.modBy) {
+                    var player = new Player(channelInfo.channelId, currentPlayer);
+                    selfPlayer = player;
+                } else {
+                    var player = new RemotePlayer(channelInfo.channelId);
+                    remotePlayer = player;
+                }
+            }, 2000)
         }
     } catch (ex) {
         console.log(ex);

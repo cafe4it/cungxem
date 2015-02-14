@@ -40,8 +40,7 @@ ChannelController = RouteController.extend({
             this.render('allowGuest')
         } else {
             var channel = this.channel(), user = Meteor.user();
-            selfPlayer = null;
-            remotePlayer = null;
+
             if (channel.createdBy != user._id) {
                 var username = user.username;
 

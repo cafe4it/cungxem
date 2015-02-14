@@ -28,6 +28,14 @@ Schemas.Player = new SimpleSchema({
     duration : {
         type: String,
         optional : true
+    },
+    addedTime: {
+        type: Date,
+        optional: true
+    },
+    playedTime: {
+        type: Date,
+        optional: true
     }
 });
 Schemas.PlaylistItem = new SimpleSchema({
