@@ -56,6 +56,9 @@ ChannelController = RouteController.extend({
         if (Meteor.user()) {
             var channel = this.channel(), user = Meteor.user();
             Session.set('title', titlePage({title: channel.title}));
+            if (channel.player) {
+                Session.set('title', titlePage({title: channel.player.title + ' - ' + channel.title}));
+            }
         }
     },
     onStop: function () {
@@ -130,6 +133,7 @@ ChannelController = RouteController.extend({
         var channel = this.channel();
         this.state.set('playlist', channel.playlist);
         this.state.set('channelInfo', {
+            title: channel.title,
             channelId: channel._id,
             modBy: channel.modBy
         });

@@ -327,6 +327,7 @@ Template.playlist_search_has_result.events({
                         Meteor.call('updateCurrentPlayOnChannel', item, function (err, rs) {
                             if (!rs.error) {
                                 //var selfPlayer = Session.get('selfPlayer');
+                                Session.set('title', titlePage({title: item.video.title + ' - ' + channelInfo.title}));
                                 selfPlayer.src(item.video.url);
                                 selfPlayer.play();
                             }
