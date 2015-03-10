@@ -271,20 +271,7 @@
                     </div>
                     <div class="list-container">
                         <div class="btn-group-vertical" role="group" aria-label="...">
-                            {{#if isExists}}
-                                <button id="btnAddToPlaylist_K{{channelId}}{{id}}" type="button"
-                                        class="btn btn-block btn-default" data-toggle="tooltip" data-placement="left"
-                                        title="Loại trừ khỏi danh sách chờ" data-channelId="{{channelId}}"
-                                        data-id="{{id}}">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            {{else}}
-                                <button id="btnAddToPlaylist_K{{channelId}}{{id}}" type="button"
-                                        class="btn btn-block btn-success" data-toggle="tooltip" data-placement="left"
-                                        title="Thêm vào danh sách chờ" data-channelId="{{channelId}}" data-id="{{id}}">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            {{/if}}
+                            {{> Template.dynamic template=buttonAddOrRemove}}
                             <button id="btnPlayNow_N{{channelId}}{{id}}" type="button" class="btn btn-block btn-danger"
                                     data-toggle="tooltip" data-placement="left" title="Phát video ngay"
                                     data-channelId="{{channelId}}" data-id="{{id}}">
@@ -296,6 +283,24 @@
             </li>
         {{/each}}
     </ol>
+</template>
+
+
+<template name="searchResult_addItem">
+    <button id="btnAddToPlaylist_K{{channelId}}{{id}}" type="button"
+            class="btn btn-block btn-success" data-toggle="tooltip" data-placement="left"
+            title="Thêm vào danh sách chờ" data-channelId="{{channelId}}" data-id="{{id}}">
+        <i id="addI_{{channelId}}{{id}}" class="fa fa-plus"></i>
+    </button>
+</template>
+
+<template name="searchResult_removeItem">
+    <button id="btnAddToPlaylist_K{{channelId}}{{id}}" type="button"
+            class="btn btn-block btn-default" data-toggle="tooltip" data-placement="left"
+            title="Loại trừ khỏi danh sách chờ" data-channelId="{{channelId}}"
+            data-id="{{id}}">
+        <i id="addI_{{channelId}}{{id}}" class="fa fa-minus"></i>
+    </button>
 </template>
 
 <template name="paginatedPlaylistItems">

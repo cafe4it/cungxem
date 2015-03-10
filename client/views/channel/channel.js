@@ -24,12 +24,13 @@ var searchYoutubeApiV2 = function (keyword) {
                         })
                     }
                     //state = false có nghĩa là pause=false;
+                    var template_searchResultItem_buttonAddorRemove = (isExists == true) ? 'searchResult_removeItem' : 'searchResult_addItem';
                     return _.extend(item, {
                         kind: 'youtube',
                         duration: item.duration,
                         url: youtubeWatch({id: item.id}),
                         channelId: channelId,
-                        isExists: isExists,
+                        buttonAddOrRemove: template_searchResultItem_buttonAddorRemove,
                         state: false,
                         currentTime: 0
                     });
@@ -298,7 +299,7 @@ Template.playlist_search_has_result.events({
                             Session.set('searchResultItems', searchResultItems);
                             $(buttonId).removeClass('btn-success');
                             $(buttonId).addClass('btn-default');
-                            $('button' + buttonId + ' > i').replaceWith("<i class='fa fa-minus'></i>");
+                            $('#addI_' + item.channelId + item.id).replaceWith("<i class='fa fa-minus'></i>");
                         }
                     })
                 }
