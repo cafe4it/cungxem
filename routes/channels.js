@@ -106,12 +106,19 @@ ChannelController = RouteController.extend({
             var playlistSize = 0;
             if (channel.playlist) {
                 playlistSize = _.size(channel.playlist);
-                var rs = paginatedItems(channel.playlist, 3, 1);
+                var playlist = channel.playlist;
+                if (channel.player) {
+                    _.map(playlist, function (item) {
+                        var buttonPlayingOrReady = (item.watchUrl == player.url) ? 'playlist_playingItem' : 'playlist_readyItem';
+                        return _.extend(item, {buttonPlayingOrReady: buttonPlayingOrReady, channelId: channel._id})
+                    });
+                }
+                var rs = paginatedItems(playlist, 3, 1);
                 playlistTemplate = {
                     template: 'channel_playlist_items',
                     data: {
                         paginatedItems: rs.data,
-                        items: channel.playlist,
+                        items: playlist,
                         page: rs.page,
                         total: rs.total_page
                     }

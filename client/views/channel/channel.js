@@ -17,20 +17,25 @@ var searchYoutubeApiV2 = function (keyword) {
                 var items = _.map(rs.items, function (i) {
                     var item = _.pick(i, 'id', 'title', 'description', 'thumbnail', 'duration');
                     //var duration = moment.utc(item.duration * 1000).format("HH:mm:ss");
-                    var isExists = false;
+                    var isExistsInPlaylist = false, isPlaying = false;
                     if (channel.playlist) {
-                        isExists = _.some(channel.playlist, function (j) {
+                        isExistsInPlaylist = _.some(channel.playlist, function (j) {
                             return item.id == j.id
                         })
                     }
-                    //state = false có nghĩa là pause=false;
-                    var template_searchResultItem_buttonAddorRemove = (isExists == true) ? 'searchResult_removeItem' : 'searchResult_addItem';
+                    if (channel.player) {
+                        isPlaying = (channel.player.url.indexOf(item.id) > -1);
+                    }
+
+                    var template_searchResultItem_buttonAddorRemove = (isExistsInPlaylist == true) ? 'searchResult_removeItem' : 'searchResult_addItem';
+                    var template_buttonReadyOrPlaying = (isPlaying == true) ? 'searchResult_playingItem' : 'searchResult_readyItem';
                     return _.extend(item, {
                         kind: 'youtube',
                         duration: item.duration,
                         url: youtubeWatch({id: item.id}),
                         channelId: channelId,
                         buttonAddOrRemove: template_searchResultItem_buttonAddorRemove,
+                        buttonReadyOrPlaying: template_buttonReadyOrPlaying,
                         state: false,
                         currentTime: 0
                     });

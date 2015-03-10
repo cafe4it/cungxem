@@ -137,7 +137,6 @@
     <video id="videoPlayer_{{player.channelId}}" class="video-js vjs-default-skin"
            controls preload="auto" width="750" height="422"
            data-setup='{ "techOrder": ["youtube"], "src": "{{player.url}}" }'>
-        >
         <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports
                 HTML5 video</a></p>
@@ -184,10 +183,29 @@
                     <div class="list-container">
                         <p>{{description}}</p>
                     </div>
+                    <div class="list-container">
+                        <div class="btn-group-vertical" role="group" aria-label="...">
+                            {{> Template.dynamic template=buttonPlayingOrReady}}
+                        </div>
+                    </div>
                 </div>
             </li>
         {{/each}}
     </ol>
+</template>
+
+<template name="playlist_readyItem">
+    <button id="btnPlayNow_L{{channelId}}{{id}}" type="button" class="btn btn-block btn-danger"
+            data-toggle="tooltip" data-placement="left" title="Phát video ngay"
+            data-channelId="{{channelId}}" data-id="{{id}}">
+        <i class="fa fa-youtube-play"></i>
+    </button>
+</template>
+<template name="playlist_playingItem">
+    <button disabled type="button" class="btn btn-block btn-default" data-toggle="tooltip" data-placement="left"
+            title="Clip đang được chơi">
+        <i class="fa fa-pause"></i>
+    </button>
 </template>
 
 <template name="playlist_search">
@@ -272,11 +290,7 @@
                     <div class="list-container">
                         <div class="btn-group-vertical" role="group" aria-label="...">
                             {{> Template.dynamic template=buttonAddOrRemove}}
-                            <button id="btnPlayNow_N{{channelId}}{{id}}" type="button" class="btn btn-block btn-danger"
-                                    data-toggle="tooltip" data-placement="left" title="Phát video ngay"
-                                    data-channelId="{{channelId}}" data-id="{{id}}">
-                                <i class="fa fa-youtube-play"></i>
-                            </button>
+                            {{> Template.dynamic template=buttonReadyOrPlaying}}
                         </div>
                     </div>
                 </div>
@@ -285,6 +299,19 @@
     </ol>
 </template>
 
+<template name="searchResult_playingItem">
+    <button disabled type="button" class="btn btn-block btn-default" data-toggle="tooltip" data-placement="left"
+            title="Clip đang được chơi">
+        <i class="fa fa-pause"></i>
+    </button>
+</template>
+<template name="searchResult_readyItem">
+    <button id="btnPlayNow_N{{channelId}}{{id}}" type="button" class="btn btn-block btn-danger"
+            data-toggle="tooltip" data-placement="left" title="Phát video ngay"
+            data-channelId="{{channelId}}" data-id="{{id}}">
+        <i class="fa fa-youtube-play"></i>
+    </button>
+</template>
 
 <template name="searchResult_addItem">
     <button id="btnAddToPlaylist_K{{channelId}}{{id}}" type="button"
@@ -295,11 +322,11 @@
 </template>
 
 <template name="searchResult_removeItem">
-    <button id="btnAddToPlaylist_K{{channelId}}{{id}}" type="button"
+    <button id="btnRemoveFromPlaylist_K{{channelId}}{{id}}" type="button"
             class="btn btn-block btn-default" data-toggle="tooltip" data-placement="left"
             title="Loại trừ khỏi danh sách chờ" data-channelId="{{channelId}}"
             data-id="{{id}}">
-        <i id="addI_{{channelId}}{{id}}" class="fa fa-minus"></i>
+        <i id="removeI_{{channelId}}{{id}}" class="fa fa-minus"></i>
     </button>
 </template>
 
