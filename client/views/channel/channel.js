@@ -204,6 +204,38 @@ Template.channel_playlist.rendered = function () {
     })
 }
 
+Template.channel_playlist_items.events({
+    'click button[id^="btnPlayNow_L"]': function (e, t) {
+        e.preventDefault();
+        if (e.currentTarget) {
+            var videoId = $(jquerySelectorId({id: e.currentTarget.id})).attr('data-id');
+            var video = _.findWhere(t.data.items, {id: videoId});
+            var controller = Iron.controller();
+            var channelInfo = controller.state.get('channelInfo');
+            if (channelInfo && video) {
+                if (channelInfo.modBy == Meteor.userId()) {
+                    var item = {
+                        channelId: channelInfo.channelId,
+                        modBy: channelInfo.modBy,
+                        video: _.extend(video, {state: false, url: video.watchUrl})
+                    }
+                    try {
+                        Meteor.call('updateCurrentPlayOnChannel', item, function (err, rs) {
+                            if (!rs.error) {
+                                //var selfPlayer = Session.get('selfPlayer');
+                                Session.set('title', titlePage({title: item.video.title + ' - ' + channelInfo.title}));
+                                selfPlayer.src(item.video.url);
+                                selfPlayer.play();
+                            }
+                        })
+                    } catch (ex) {
+                        console.log(ex)
+                    }
+                }
+            }
+        }
+    }
+})
 /*Template.channel_playlist.created = function(){
 
  }

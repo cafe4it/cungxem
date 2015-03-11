@@ -59,6 +59,12 @@ Schemas.PlaylistItem = new SimpleSchema({
     },
     watchUrl : {
         type : String
+    },
+    addedTime: {
+        type: Date,
+        autoValue: function () {
+            return new Date;
+        }
     }
 })
 Schemas.Channel = new SimpleSchema({
